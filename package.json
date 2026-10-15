@@ -1,0 +1,68 @@
+{
+  "name": "smart-commit",
+  "displayName": "Smart Commit",
+  "description": "Save all workspace files and commit them to git. Skips files open in the editor that are outside the workspace directory.",
+  "version": "1.0.0",
+  "icon": "images/icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "smart-commit.saveAndCommit",
+        "title": "Smart Commit: Save & Commit Workspace"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "smart-commit.saveAndCommit",
+        "key": "ctrl+alt+s",
+        "mac": "ctrl+alt+s",
+        "when": "editorTextFocus || !editorFocus"
+      }
+    ],
+    "configuration": {
+      "title": "Smart Commit",
+      "properties": {
+        "smartCommit.commitMessageTemplate": {
+          "type": "string",
+          "default": "chore: auto-commit {date} {time}",
+          "description": "Default commit message template. Use {date}, {time}, {files} as placeholders."
+        },
+        "smartCommit.promptForMessage": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show an input box to enter a custom commit message before committing."
+        },
+        "smartCommit.gitUserName": {
+          "type": "string",
+          "default": "",
+          "description": "Git user.name to use if not set globally (leave empty to use existing git config)."
+        },
+        "smartCommit.gitUserEmail": {
+          "type": "string",
+          "default": "",
+          "description": "Git user.email to use if not set globally (leave empty to use existing git config)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "npm run compile && node --test \"tests/*.test.js\""
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0"
+  },
+  "license": "SEE LICENSE IN LICENSE"
+}

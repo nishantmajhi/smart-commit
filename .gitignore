@@ -1,0 +1,9 @@
+node_modules/
+
+# Compiled output. It was committed, which meant the repository carried a build
+# of src/ that drifted from it and produced a diff on every recompile. Build it
+# with `npm run compile`.
+out/
+
+# Packaged extension, built with `vsce package`.
+*.vsix
